@@ -125,7 +125,7 @@ def get_description(title):
 
 	j=0
 	movie_names = []
-	# print("The recomended movies for "+ title +" are as follows")
+	# print("The recommended movies for "+ title +" are as follows")
 	for item in sorted_scores:
 		movies_title =db[db.Movie_id == item[0]]['Description'].values[0]
 		desc.append(movies_title)
@@ -134,4 +134,33 @@ def get_description(title):
 			break
 	return desc
 
-print(get_description('Fury'))
+# print(get_description('Fury'))
+def get_genre(title):
+	
+	movie_id= db[db.Title == title]['Movie_id'].values[0]
+
+	#create a list enumeration for similarity score
+
+	scores = list(enumerate(cs[movie_id]))
+
+	#sorting the list
+	sorted_scores = sorted(scores,key =lambda x:x[1], reverse= True)
+
+	sorted_scores=sorted_scores[1:]
+
+	#printing the sorted scores
+	# print(sorted_scores)
+
+	# printing first 10 similar movies
+
+	j=0
+	Genre = []
+	# print("The recommended movies for "+ title +" are as follows")
+	for item in sorted_scores:
+		movies_title =db[db.Movie_id == item[0]]['Genre'].values[0]
+		Genre.append(movies_title)
+		j+=1
+		if j>10:
+			break
+	return Genre
+
