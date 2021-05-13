@@ -95,7 +95,7 @@
 		<h1 class="Heading">Welcome to Mov<span style="color:red">ie Recommendation System</span></h1>
 		<form method="POST" action="/send_data">
 			<div class="form-group">
-				<input type="text" name="movie_name" placeholder="Enter Movie Name">
+				<input type="text" name="movie_name" placeholder="Enter Movie Name" pattern="[a-zA-Z0-9 ]+">
 			</div>
 			<input class="submit_button" type="submit" value="Search">
 		</form>
@@ -122,8 +122,18 @@
 			{{description[i]}}</td>
 		</tr>
 		{% endfor %}
-	</table>
 	{% endif %}
+			<h3 style="font-size:50px">Top Rated MoVies This Week</h3>
+			
+		{%for i in range(top_rated|length)%}	
+		<tr>
+				<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU"><br>
+				{{top_rated[i]}}
+			</td>	
+		</tr>	
+		{% endfor %}
+		
+	</table>
 </div>
 </body>
 

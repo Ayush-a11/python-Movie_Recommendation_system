@@ -23,6 +23,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 db = pd.read_csv('IMDB-Movie-Data.csv')
 #adding a new column Movie-Id
 db['Movie_id'] = range(0,1000)
+db['Genre']=db['Genre'].str.replace(',',' ',regex=True)
 #showing data
 db.head()
 
@@ -133,6 +134,15 @@ def get_description(title):
 		if j>10:
 			break
 	return desc
+def top_pick():
+	picks= []
+	db.sort_values(by=['Rating'],ascending=False)
+	items= ['Title']
+	final = []
+	picks = (db['Title'].tolist())
+	for i in range(9):
+		final.append(picks[i])
+	return final
 
 # print(get_description('Fury'))
 def get_genre(title):
