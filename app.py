@@ -12,10 +12,10 @@ def show_index_html():
 
 @app.route('/send_data', methods = ['POST'])
 def get_data_from_html():
-        pay = request.form['movie_name'] 
-        movies = get_recommendation(pay)
-        description =get_description(pay)
-        Genre = get_genre(pay)
+        movie_name = request.form['movie_name']
+        movies = get_recommendation(movie_name)
+        description =get_description(movie_name)
+        Genre = get_genre(movie_name)
 
         return render_template('index.html',movies = movies , description = description,Genre=Genre ,length = 10,top_rated=[]) 
 

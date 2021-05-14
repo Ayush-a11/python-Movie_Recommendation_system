@@ -86,6 +86,12 @@
 			background: url(https://previews.123rf.com/images/noomubon/noomubon1908/noomubon190800304/128157447-natural-black-marble-texture-for-skin-tile-wallpaper-luxurious-background-for-design-art-work-stone-.jpg);
 			
 		}
+		.column{
+			float: left;
+			width:28%;
+			padding-left: 5%;
+
+		}
 	</style>
 </head>
 <div class="search">
@@ -123,16 +129,26 @@
 		</tr>
 		{% endfor %}
 	{% endif %}
-			<h3 style="font-size:50px">Top Rated MoVies This Week</h3>
-			
-		{%for i in range(top_rated|length)%}	
-		<tr>
-				<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU"><br>
-				{{top_rated[i]}}
-			</td>	
-		</tr>	
+			<h3 style="font-size:50px">Top <span style="color:rgb(131, 131, 33)">IMDB</span> Rated MoVies This Week</h3>
+		<tr id="lm">	
+		{%for i in range(0,top_rated|length,3)%}
+		<div class="row">	
+				<div class="column">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
+					<figcaption><h3>{{top_rated[i]}}</h3></figcaption>
+				</div>
+				<div class="column">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
+					<figcaption><h3>{{top_rated[i+1]}}</h3></figcaption>
+				</div>
+				<div class="column">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
+					<figcaption><h3>{{top_rated[i+2]}}</h3></figcaption>
+				</div>
+				
+		</div>		
 		{% endfor %}
-		
+		</tr>
 	</table>
 </div>
 </body>

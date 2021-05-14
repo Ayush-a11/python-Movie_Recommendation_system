@@ -14,6 +14,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+import difflib
 
 #Loading Data
 # from google.colab import files
@@ -80,7 +81,6 @@ cs=cosine_similarity(cm)
 #finding the movies id from title
 def get_recommendation(title):
 	movie_id= db[db.Title == title]['Movie_id'].values[0]
-
 	#create a list enumeration for similarity score
 
 	scores = list(enumerate(cs[movie_id]))
@@ -105,7 +105,7 @@ def get_recommendation(title):
 		if j>10:
 			break
 	return movie_names
-
+#for UI
 def get_description(title):
 	desc= []
 	movie_id= db[db.Title == title]['Movie_id'].values[0]
@@ -134,12 +134,13 @@ def get_description(title):
 		if j>10:
 			break
 	return desc
+	
 def top_pick():
 	picks= []
-	db.sort_values(by=['Rating'],ascending=False)
+	sorted_df = db.sort_values(by=['Rating'],ascending=False)
 	items= ['Title']
 	final = []
-	picks = (db['Title'].tolist())
+	picks = (sorted_df['Title'].tolist())
 	for i in range(9):
 		final.append(picks[i])
 	return final
