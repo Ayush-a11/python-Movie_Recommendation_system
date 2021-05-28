@@ -1,4 +1,9 @@
 {
     "python.pythonPath": "d:\\kk\\env\\Scripts\\python.exe",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.ignoreWords": [
+        "count",
+        "sklearn",
+        "vectorizer"
+    ]
 }

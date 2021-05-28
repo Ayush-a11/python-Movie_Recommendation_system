@@ -80,7 +80,10 @@ cs=cosine_similarity(cm)
 
 #finding the movies id from title
 def get_recommendation(title):
-	movie_id= db[db.Title == title]['Movie_id'].values[0]
+	try:
+		movie_id= db[db.Title == title]['Movie_id'].values[0]
+	except:
+		return []
 	#create a list enumeration for similarity score
 
 	scores = list(enumerate(cs[movie_id]))
@@ -108,7 +111,10 @@ def get_recommendation(title):
 #for UI
 def get_description(title):
 	desc= []
-	movie_id= db[db.Title == title]['Movie_id'].values[0]
+	try:
+		movie_id= db[db.Title == title]['Movie_id'].values[0]
+	except:
+		return []
 
 	#create a list enumeration for similarity score
 
@@ -148,7 +154,10 @@ def top_pick():
 # print(get_description('Fury'))
 def get_genre(title):
 	
-	movie_id= db[db.Title == title]['Movie_id'].values[0]
+	try:
+		movie_id= db[db.Title == title]['Movie_id'].values[0]
+	except:
+		return []
 
 	#create a list enumeration for similarity score
 
