@@ -10,16 +10,17 @@ Original file is located at
 # Movie-Recomendation system
 
 #import libaries
+
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+from config import *
 import difflib
 
 #Loading Data
 # from google.colab import files
 # uploaded = files.upload()
-
 #Storing Data
 db = pd.read_csv('IMDB-Movie-Data.csv')
 #adding a new column Movie-Id
@@ -27,16 +28,6 @@ db['Movie_id'] = range(0,1000)
 db['Genre']=db['Genre'].str.replace(',',' ',regex=True)
 #showing data
 db.head()
-
-# Commented out IPython magic to ensure Python compatibility.
-#EDA
-#importing labaries for visualization
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# sns.set_style('white')
-# %matplotlib inline
-
-
 
 #get a count of the number of rows/movies in the dataset
 db.shape
@@ -50,17 +41,18 @@ db[columns].head(3)
 #checking for any missing values in the important columns
 db[columns].isnull().any()
 
-#comining the values of the important column into a single string
-def get_important_features(data):
+#coming the values of the important column into a single string
+def get_important_features(actor,director,description,genre,title):
 	important_features = []
-	for i in range(0,data.shape[0]):
-		important_features.append(data['Actors'][i]+' '+data['Director'][i]+' '+data['Genre'][i]+' '+data['Title'][i]+' '+data['Description'][i])
+	for i in range(0,len(actor)):
+		important_features.append(actor[i]+' '+director[i]+' '+genre[i]+' '+title[i]+' '+description[i])
 
 	return important_features
 
 #creating a column to hold the combine string
-db['important_features']= get_important_features(db)
+db['important_features']= get_important_features(actor,director,description,genre,title)
 
+print ("yeah----------------------------------------"+db['important_features'])
 #show the data
 db.head(20)
 
