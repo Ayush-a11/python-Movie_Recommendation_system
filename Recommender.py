@@ -50,14 +50,14 @@ def get_important_features(actor,director,description,genre,title):
 	return important_features
 
 #creating a column to hold the combine string
-db['important_features']= get_important_features(actor,director,description,genre,title)
+important_features= get_important_features(actor,director,description,genre,title)
 
-print ("yeah----------------------------------------"+db['important_features'])
+# print ("yeah----------------------------------------",important_features)
 #show the data
 db.head(20)
 
 #covert the text to matrix
-cm=CountVectorizer().fit_transform(db['important_features'])
+cm=CountVectorizer().fit_transform(important_features)
 
 #Get the cosine similarity matrix 
 cs=cosine_similarity(cm)
@@ -75,7 +75,7 @@ def get_recommendation(title):
 	try:
 		movie_id= db[db.Title == title]['Movie_id'].values[0]
 	except:
-		return []
+		return ['no result found please check for spelling']
 	#create a list enumeration for similarity score
 
 	scores = list(enumerate(cs[movie_id]))
@@ -106,7 +106,7 @@ def get_description(title):
 	try:
 		movie_id= db[db.Title == title]['Movie_id'].values[0]
 	except:
-		return []
+		return ['SORRY! No `result found please check for spelling or movie might not exist in database`']
 
 	#create a list enumeration for similarity score
 
@@ -133,15 +133,14 @@ def get_description(title):
 			break
 	return desc
 	
-def top_pick():
+def top_pick(choice):
 	picks= []
-	sorted_df = db.sort_values(by=['Rating'],ascending=False)
-	items= ['Title']
+	sorted_df = db.sort_values(by=[choice],ascending=False)
 	final = []
 	picks = (sorted_df['Title'].tolist())
 	for i in range(9):
 		final.append(picks[i])
-	return final
+	return final,sorted_df[choice].tolist()
 
 # print(get_description('Fury'))
 def get_genre(title):

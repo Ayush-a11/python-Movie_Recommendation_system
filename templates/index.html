@@ -24,6 +24,17 @@
 			margin-left: 20px;
 			text-align: center;
 		}
+		input[type=list] {
+			background-color: rgb(255, 255, 255);
+			color: rgb(0, 0, 0);
+			font-size: 30px;
+			border-bottom: 5px solid red;
+			width: 50%;
+			height: 25px;
+			margin-left:20px;
+			text-align: center;
+
+		}
 
 		.submit_button {
 			background-color: rgba(0, 0, 0, 0.856);
@@ -68,9 +79,9 @@
 
 		.recom {
 			color: white;
-			text-align: center;
 			background: black;
 			margin-bottom: 0px;
+			padding-left:10px;
 		}
 
 		.desc {
@@ -84,7 +95,6 @@
 		}
 		h3{
 			background: url(https://previews.123rf.com/images/noomubon/noomubon1908/noomubon190800304/128157447-natural-black-marble-texture-for-skin-tile-wallpaper-luxurious-background-for-design-art-work-stone-.jpg);
-			
 		}
 		.column{
 			float: left;
@@ -92,36 +102,61 @@
 			padding-left: 5%;
 
 		}
+		.myform{
+
+			display:flex;
+			
+		}
+		.myform .submit_button{
+			margin-left:0px;
+		}
 	</style>
-</head>
-<div class="search">
-		
+</head>		
 	<body
+	
 		style="background: url(https://img.freepik.com/free-vector/blue-copy-space-digital-background_23-2148821698.jpg?size=626&ext=jpg)repeat">
-		<button onclick="{window.location.href}">HOME</button>
+		<div class="search">	
 		<h1 class="Heading">Welcome to Mov<span style="color:red">ie Recommendation System</span></h1>
+		
 		<form name="MyForm" method="POST" action="/send_data">
 			<div class="form-group">
 				<input type="text" name="movie_name" placeholder="Enter Movie Name" pattern="[a-zA-Z0-9 ]+"required>
 			</div>
 			<input class="submit_button" type="submit" value="Search"onclick="validate();">
 		</form>
+		<div class="filters">
+			<form class="myform" method="POST" action="/he">
+				<input type="list" list="filter" name="filter" placeholder="Y+Filter Based on">
+				<datalist id="filter">
+				  <option value="Metascore">
+				  <option value="Rating">
+				  <option value="Votes">
+				  <option value="Revenue (Millions)">
+				</datalist>
+				<input class="submit_button" type="submit" value="GO>>>>" >
+			  </form>			  
+		</div>
 </div>
-<h1 class="recom"><span style="color:red; font-weight:bold">Recomme</span>nded Movies</h1>
+<h1 class="recom"><a href="/" style="color: red;padding-right:35%;" >Home\</a>
+	<span style="color:red; font-weight:bold">Recomme</span>nded Movies</h1>
 <div class="results">
 	{% if movies|length !=0 %}
 	<table>
+		{%if(movies|length!=1)%}
 		<tr>
 			<th>Movie_NAME</th>
 			<th align="center">Movie_Description</th>
 		</tr>
+		{%endif%}
 
-		{% for i in range(length) %}	
+		{% for i in range(movies|length) %}	
 		<tr>
+			{%if(movies|length!=1)%}
 			<td style="font-size:20px"><img  width="300px" height="300px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
 				<br>
 				<h3>{{movies[i]}}</h3>
 			</td>
+			{%endif%}
 			<td 
 			class="desc">
 			<h1 class="genre">{{Genre[i]}}</h1>
@@ -136,15 +171,15 @@
 		<div class="row">	
 				<div class="column">
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
-					<figcaption><h3>{{top_rated[i]}}</h3></figcaption>
+					<figcaption><h3>{{top_rated[i]}}<br>{{num[i]}}</h3></figcaption>
 				</div>
 				<div class="column">
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
-					<figcaption><h3>{{top_rated[i+1]}}</h3></figcaption>
+					<figcaption><h3>{{top_rated[i+1]}}<br>{{num[i]}}</h3></figcaption>
 				</div>
 				<div class="column">
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
-					<figcaption><h3>{{top_rated[i+2]}}</h3></figcaption>
+					<figcaption><h3>{{top_rated[i+2]}}<br>{{num[i]}}</h3></figcaption>
 				</div>
 				
 		</div>		
