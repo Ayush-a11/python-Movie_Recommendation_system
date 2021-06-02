@@ -7,15 +7,14 @@ app = Flask(__name__)
 
 @app.route('/',methods = ['GET'])
 def show_index_html():
+    top_rated=[]
     top_rated,num=top_pick('Rating')
     return render_template('index.html',movies = [], description= [],Genre= [],length=0, top_rated=top_rated,num=num)
 
 @app.route('/he',methods = ['POST'])
 def show_index_htm():
     choice = request.form['filter']
-    print("HELLO")
     top_rated,num=top_pick(choice)
-    print(num)
     return render_template('index.html',movies = [], description= [],Genre= [],length=0, top_rated=top_rated,num=num)
 
 @app.route('/send_data', methods = ['POST'])

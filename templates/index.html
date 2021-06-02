@@ -24,13 +24,13 @@
 			margin-left: 20px;
 			text-align: center;
 		}
-		input[type=list] {
+		#filter {
 			background-color: rgb(255, 255, 255);
 			color: rgb(0, 0, 0);
 			font-size: 30px;
 			border-bottom: 5px solid red;
 			width: 50%;
-			height: 25px;
+			height: 40px;
 			margin-left:20px;
 			text-align: center;
 
@@ -126,13 +126,13 @@
 		</form>
 		<div class="filters">
 			<form class="myform" method="POST" action="/he">
-				<input type="list" list="filter" name="filter" placeholder="Y+Filter Based on">
-				<datalist id="filter">
-				  <option value="Metascore">
-				  <option value="Rating">
-				  <option value="Votes">
-				  <option value="Revenue (Millions)">
-				</datalist>
+				<select name="filter" id="filter">
+					<option value="">Y+ Filter based on</option>
+					<option value="Rating">Rating</option>
+					<option value="Votes">Votes</option>
+					<option value="Revenue (Millions)">Revenue (Millions)</option>
+					<option value="Metascore">Metascore</option>
+				  </select>
 				<input class="submit_button" type="submit" value="GO>>>>" >
 			  </form>			  
 		</div>
@@ -148,7 +148,6 @@
 			<th align="center">Movie_Description</th>
 		</tr>
 		{%endif%}
-
 		{% for i in range(movies|length) %}	
 		<tr>
 			{%if(movies|length!=1)%}
@@ -175,11 +174,11 @@
 				</div>
 				<div class="column">
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
-					<figcaption><h3>{{top_rated[i+1]}}<br>{{num[i]}}</h3></figcaption>
+					<figcaption><h3>{{top_rated[i+1]}}<br>{{num[i+1]}}</h3></figcaption>
 				</div>
 				<div class="column">
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
-					<figcaption><h3>{{top_rated[i+2]}}<br>{{num[i]}}</h3></figcaption>
+					<figcaption><h3>{{top_rated[i+2]}}<br>{{num[i+2]}}</h3></figcaption>
 				</div>
 				
 		</div>		
