@@ -35,8 +35,21 @@
 			text-align: center;
 
 		}
+		
 
 		.submit_button {
+			background-color: rgba(0, 0, 0, 0.856);
+			width: 400px;
+			height: 40px;
+			color: rgb(255, 0, 0);
+			font-weight: bold;
+			font-size: 20px;
+			font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+			/* margin-left: 30%; */
+			border-radius: 50px;
+			
+		}
+		.submit_button1 {
 			background-color: rgba(0, 0, 0, 0.856);
 			width: 400px;
 			height: 40px;
@@ -46,7 +59,9 @@
 			font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 			margin-left: 30%;
 			border-radius: 50px;
+			
 		}
+
 
 		.search {
 			border: 6px solid transparent;
@@ -122,11 +137,11 @@
 			<div class="form-group">
 				<input type="text" name="movie_name" placeholder="Enter Movie Name" pattern="[a-zA-Z0-9 ]+"required>
 			</div>
-			<input class="submit_button" type="submit" value="Search"onclick="validate();">
+			<input class="submit_button1" type="submit" value="Search"onclick="validate();">
 		</form>
 		<div class="filters">
 			<form class="myform" method="POST" action="/he">
-				<select name="filter" id="filter">
+				<select name="filter" id="filter" required>
 					<option value="">Y+ Filter based on</option>
 					<option value="Rating">Rating</option>
 					<option value="Votes">Votes</option>
@@ -136,6 +151,7 @@
 				<input class="submit_button" type="submit" value="GO>>>>" >
 			  </form>			  
 		</div>
+		</form>
 </div>
 <h1 class="recom"><a href="/" style="color: red;padding-right:35%;" >Home\</a>
 	<span style="color:red; font-weight:bold">Recomme</span>nded Movies</h1>
@@ -153,7 +169,12 @@
 			{%if(movies|length!=1)%}
 			<td style="font-size:20px"><img  width="300px" height="300px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYYLvmF47YQ7aF2CicOkLtAsDAlBZP2mqW0w&usqp=CAU">
 				<br>
-				<h3>{{movies[i]}}</h3>
+				<form  method="POST" action="/send_data">
+					<h3 style="margin-left: 0%;">					
+					<input class="submit_button" type="submit" name="movie_name" value="{{movies[i]}}">
+				</h3>
+
+				</form>
 			</td>
 			{%endif%}
 			<td 

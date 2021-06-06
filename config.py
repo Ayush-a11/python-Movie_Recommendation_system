@@ -78,5 +78,46 @@ for i in myresults:
 	myresults=mycursor.fetchall()
 	for i in myresults:
 		metascore.append(i[0])
+sortedMeta=[]
+sortedMeta2=[]
+mycursor.execute("SELECT title,metascore from `imdb-movie-data` ORDER BY metascore desc")
 
- 
+myresults=mycursor.fetchall()
+for i in myresults:
+		sortedMeta.append(i[0])
+		sortedMeta2.append(i[1])
+
+
+sortedrate=[]
+sortedrate2=[]
+mycursor.execute("SELECT title,rating from `imdb-movie-data` ORDER BY rating desc")
+
+myresults=mycursor.fetchall()
+for i in myresults:
+		sortedrate.append(i[0])
+		sortedrate2.append(i[1])
+
+
+
+sortedvote=[]
+sortedvote2=[]
+mycursor.execute("SELECT title,votes from `imdb-movie-data` ORDER BY votes desc")
+
+myresults=mycursor.fetchall()
+for i in myresults:
+		sortedvote.append(i[0])
+		sortedvote2.append(i[1])		
+
+
+sortedrev=[]
+sortedrev2=[]
+mycursor.execute("SELECT title,`Revenue (Millions)` from `imdb-movie-data` ORDER BY `Revenue (Millions)` desc")
+
+myresults=mycursor.fetchall()
+for i in myresults:
+		sortedrev.append(i[0])
+		sortedrev2.append(i[1])		
+
+
+
+

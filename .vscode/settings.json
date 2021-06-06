@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "d:\\kk\\env\\Scripts\\python.exe",
+    "python.pythonPath": "env\\Scripts\\python.exe",
     "git.ignoreLimitWarning": true,
     "cSpell.ignoreWords": [
         "count",

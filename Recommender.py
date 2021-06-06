@@ -72,6 +72,7 @@ cs=cosine_similarity(cm)
 #finding the movies id from title
 def get_recommendation(Title):
 	try:
+	
 		Movie_id= title.index(Title)
 	except:
 		return ['no result found please check for spelling']
@@ -137,24 +138,20 @@ def top_pick(choice):
 		final = []
 		z=[]
 		if(choice=='Metascore'):
-			picks=metascore
-			z = [x for _,x in sorted(zip(metascore,title),reverse= True)]
-			picks.sort(reverse= True)
-			# print(picks)
+			picks=sortedMeta2
+			z=sortedMeta
 		if(choice=='Votes'):
-			picks = votes
-			z = [x for _,x in sorted(zip(votes,title),reverse= True)]
-			picks.sort(reverse=True)
+			picks = sortedvote2
+			z=sortedvote
 		if(choice=='Rating'):
-			picks = rating
-			z = [x for _,x in sorted(zip(rating,title),reverse= True)]
-			picks.sort(reverse=True)
+			picks = sortedrate2
+			z=sortedrate
 		if(choice=='Revenue (Millions)'):
-			picks = revenue
-			z = [x for _,x in sorted(zip(revenue,title),reverse= True)]
-			picks.sort(reverse=True)
+			picks = sortedrev2
+			z=sortedrev
 		for i in range(9):
 			final.append(z[i])
+			
 		
 		return final,picks
 def get_genre(Title):

@@ -25,6 +25,6 @@ def get_data_from_html():
         Genre = get_genre(movie_name)
 
         return render_template('index.html',movies = movies , description = description,Genre=Genre ,length = 10,top_rated=[]) 
-
+        
 if __name__ == '__main__':
     app.run(debug=True)
