@@ -60,6 +60,28 @@ cm=CountVectorizer().fit_transform(important_features)
 
 #Get the cosine similarity matrix 
 cs=cosine_similarity(cm)
+def cs1(a,b):
+	dot_product=np.dot(a,b)
+	norm_a= np.linalg.norm(a)
+	norm_b= np.linalg.norm(b)
+	return dot_product/(norm_a*norm_b+1)
+
+
+mat=cm.toarray()
+res=[]
+for i in range(len(mat)):
+	curr=[]
+	for j in range(len(mat)):
+		if(i==j):
+			curr.append(1)
+		else:
+			curr.append(round(cs1(mat[i],mat[j]),3))
+	res.append(curr)
+
+cs2 =np.reshape(res,[len(mat),len(mat)])
+
+
+# print(cs)
 #printing the cosine similarity matrix
 # print(cs)
 
@@ -78,7 +100,9 @@ def get_recommendation(Title):
 		return ['no result found please check for spelling']
 	#create a list enumeration for similarity score
 	print("------------",title[Movie_id])
-	scores = list(enumerate(cs[Movie_id]))
+	#print("------------",Ocs(Movie_id))
+	
+	scores = list(enumerate(cs2[Movie_id]))
 
 	#sorting the list
 	sorted_scores = sorted(scores,key =lambda x:x[1], reverse= True)
@@ -109,8 +133,8 @@ def get_description(Title):
 		return ['SORRY! No `result found please check for spelling or movie might not exist in database`']
 
 	#create a list enumeration for similarity score
-
-	scores = list(enumerate(cs[Movie_id]))
+	
+	scores = list(enumerate(cs2[Movie_id]))
 
 	#sorting the list
 	sorted_scores = sorted(scores,key =lambda x:x[1], reverse= True)
@@ -163,7 +187,7 @@ def get_genre(Title):
 
 	#create a list enumeration for similarity score
 
-	scores = list(enumerate(cs[Movie_id]))
+	scores = list(enumerate(cs2[Movie_id]))
 
 	#sorting the list
 	sorted_scores = sorted(scores,key =lambda x:x[1], reverse= True)
@@ -186,3 +210,4 @@ def get_genre(Title):
 			break
 	return Genre
 
+#########cosine similarity matrix
